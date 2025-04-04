@@ -6,7 +6,7 @@ layout: default
     <div class="container">
         <div class="header-content">
             <h1>Eternia Solutions</h1>
-            <p>Building the Future of API Development</p>
+            <p>Innovative Solutions for Tomorrow's Challenges</p>
         </div>
     </div>
 </header>
