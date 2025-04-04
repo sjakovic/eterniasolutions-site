@@ -1,0 +1,10 @@
+title: Eternia Solutions LLC
+email: office@eterniasolutions.io
+description: >-
+  Eternia Solutions LLC - Innovative Solutions for Tomorrow's Challenges
+baseurl: ""
+url: "https://eterniasolutions.io"
+
+sass:
+  sass_dir: _sass
+  style: compressed 
