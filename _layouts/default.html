@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="{{ site.description }}">
-    <title>{{ site.title }}</title>
+    <title>{{ page.title | default: site.title }}</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -42,7 +42,70 @@
             padding: 0 calc(var(--spacing) * 2.5);
         }
 
+        /* Navigation */
+        .nav-wrapper {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: calc(var(--spacing) * 2) 0;
+        }
+
+        .nav-logo {
+            font-size: 1.5em;
+            font-weight: 800;
+            color: var(--primary-dark);
+            text-decoration: none;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: calc(var(--spacing) * 4);
+        }
+
+        .nav-menu a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            padding: calc(var(--spacing) * 1) calc(var(--spacing) * 2);
+            border-radius: 6px;
+        }
+
+        .nav-menu a:hover {
+            color: var(--primary);
+            background: rgba(42, 82, 152, 0.1);
+        }
+
+        .nav-menu a.active {
+            color: var(--primary);
+            background: rgba(42, 82, 152, 0.1);
+        }
+
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5em;
+            color: var(--primary-dark);
+            cursor: pointer;
+        }
+
+        /* Adjust header for fixed nav */
         header {
+            margin-top: 80px;
             background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
             color: white;
             padding: calc(var(--spacing) * 20) 0 calc(var(--spacing) * 25);
@@ -76,11 +139,61 @@
             letter-spacing: -1px;
         }
 
-        .header-content p {
-            font-size: 1.4em;
-            opacity: 0.9;
-            max-width: 600px;
-            margin: 0 auto;
+        .hero-tagline {
+            font-size: 1.6em;
+            opacity: 0.95;
+            max-width: 700px;
+            margin: 0 auto calc(var(--spacing) * 3);
+            font-weight: 600;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2em;
+            opacity: 0.85;
+            max-width: 800px;
+            margin: 0 auto calc(var(--spacing) * 6);
+            line-height: 1.7;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: calc(var(--spacing) * 3);
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-primary, .cta-secondary {
+            display: inline-block;
+            padding: calc(var(--spacing) * 2) calc(var(--spacing) * 4);
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1em;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .cta-primary {
+            background: white;
+            color: var(--primary);
+        }
+
+        .cta-primary:hover {
+            background: var(--background-alt);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .cta-secondary {
+            background: transparent;
+            color: white;
+            border-color: white;
+        }
+
+        .cta-secondary:hover {
+            background: white;
+            color: var(--primary);
+            transform: translateY(-2px);
         }
 
         .main-content {
@@ -152,6 +265,30 @@
             font-size: 0.9em;
         }
 
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: calc(var(--spacing) * 2);
+        }
+
+        .footer-links {
+            display: flex;
+            gap: calc(var(--spacing) * 3);
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            opacity: 1;
+        }
+
         .expertise-section {
             margin-top: -100px;
             position: relative;
@@ -175,6 +312,39 @@
         .expertise-item:hover {
             transform: translateY(-10px);
             box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+        }
+
+        .expertise-item h3 {
+            color: var(--primary-dark);
+            margin-bottom: calc(var(--spacing) * 2);
+            font-size: 1.3em;
+            font-weight: 700;
+        }
+
+        .expertise-item p {
+            margin-bottom: calc(var(--spacing) * 2);
+            color: var(--text-light);
+            font-size: 1em;
+        }
+
+        .expertise-item ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .expertise-item li {
+            padding: calc(var(--spacing) * 0.5) 0;
+            color: var(--text-light);
+            position: relative;
+            padding-left: calc(var(--spacing) * 2);
+        }
+
+        .expertise-item li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+            font-weight: bold;
         }
 
         .services-section {
@@ -210,31 +380,205 @@
             border-radius: 5px 0 0 5px;
         }
 
-        .features-section {
-            position: relative;
-            padding: calc(var(--spacing) * 10) 0;
+        .service-item h3 {
+            color: var(--primary-dark);
+            margin-bottom: calc(var(--spacing) * 2);
+            font-size: 1.3em;
+            font-weight: 700;
         }
 
-        .features-grid {
+        .service-item p {
+            margin-bottom: calc(var(--spacing) * 2);
+            color: var(--text-light);
+            font-size: 1em;
+        }
+
+        .service-item ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .service-item li {
+            padding: calc(var(--spacing) * 0.5) 0;
+            color: var(--text-light);
+            position: relative;
+            padding-left: calc(var(--spacing) * 2);
+        }
+
+        .service-item li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        .about-section {
+            padding: calc(var(--spacing) * 12) 0;
+            background: var(--background-alt);
+        }
+
+        .about-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .about-content h2 {
+            text-align: center;
+            margin-bottom: calc(var(--spacing) * 6);
+        }
+
+        .about-intro {
+            font-size: 1.3em;
+            font-weight: 600;
+            color: var(--primary-dark);
+            margin-bottom: calc(var(--spacing) * 3);
+        }
+
+        .about-content p {
+            margin-bottom: calc(var(--spacing) * 3);
+            font-size: 1.1em;
+            line-height: 1.7;
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: calc(var(--spacing) * 4);
+            margin-top: calc(var(--spacing) * 6);
+            text-align: center;
+        }
+
+        .stat {
+            background: white;
+            padding: calc(var(--spacing) * 3);
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .stat-number {
+            display: block;
+            font-size: 2.5em;
+            font-weight: 800;
+            color: var(--primary);
+            margin-bottom: calc(var(--spacing) * 1);
+        }
+
+        .stat-label {
+            color: var(--text-light);
+            font-size: 0.9em;
+            font-weight: 600;
+        }
+
+        .case-studies-section {
+            padding: calc(var(--spacing) * 12) 0;
+        }
+
+        .case-studies-grid {
+            display: grid;
+            gap: calc(var(--spacing) * 6);
+        }
+
+        .case-study {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .case-study h3 {
+            background: var(--primary);
+            color: white;
+            padding: calc(var(--spacing) * 3) calc(var(--spacing) * 4);
+            margin: 0;
+            font-size: 1.4em;
+            font-weight: 700;
+        }
+
+        .case-study-content {
+            padding: calc(var(--spacing) * 4);
+        }
+
+        .case-study-section {
+            margin-bottom: calc(var(--spacing) * 4);
+        }
+
+        .case-study-section:last-child {
+            margin-bottom: 0;
+        }
+
+        .case-study-section h4 {
+            color: var(--primary-dark);
+            margin-bottom: calc(var(--spacing) * 1.5);
+            font-size: 1.2em;
+            font-weight: 700;
+        }
+
+        .case-study-section p {
+            margin-bottom: calc(var(--spacing) * 1.5);
+            color: var(--text-light);
+        }
+
+        .case-study-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .case-study-section li {
+            padding: calc(var(--spacing) * 0.5) 0;
+            color: var(--text-light);
+            position: relative;
+            padding-left: calc(var(--spacing) * 2);
+        }
+
+        .case-study-section li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        .testimonials-section {
+            padding: calc(var(--spacing) * 12) 0;
+            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+        }
+
+        .testimonials-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
-            gap: calc(var(--spacing) * 6);
-            position: relative;
+            gap: calc(var(--spacing) * 4);
         }
 
-        .feature-item {
+        .testimonial {
             background: white;
             padding: calc(var(--spacing) * 4);
             border-radius: 15px;
             box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-            min-height: 200px;
         }
 
-        .feature-item:nth-child(even) {
-            transform: translateY(40px);
+        .testimonial blockquote {
+            font-style: italic;
+            font-size: 1.1em;
+            color: var(--text);
+            margin-bottom: calc(var(--spacing) * 3);
+            line-height: 1.6;
+        }
+
+        .testimonial-author {
+            border-top: 1px solid var(--background-alt);
+            padding-top: calc(var(--spacing) * 2);
+        }
+
+        .testimonial-author strong {
+            display: block;
+            color: var(--primary-dark);
+            font-weight: 700;
+        }
+
+        .testimonial-author span {
+            color: var(--text-light);
+            font-size: 0.9em;
         }
 
         .contact-section {
@@ -251,11 +595,37 @@
             align-items: center;
         }
 
+        .contact-cta {
+            margin-top: calc(var(--spacing) * 4);
+        }
+
         .contact-details {
             background: white;
             padding: calc(var(--spacing) * 4);
             border-radius: 15px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-details h3 {
+            color: var(--primary-dark);
+            margin-bottom: calc(var(--spacing) * 2);
+            font-size: 1.3em;
+            font-weight: 700;
+        }
+
+        .contact-details p {
+            margin-bottom: calc(var(--spacing) * 1);
+            color: var(--text-light);
+        }
+
+        .contact-details a {
+            color: var(--primary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-details a:hover {
+            color: var(--primary-dark);
         }
 
         .section-title {
@@ -279,21 +649,64 @@
 
         @media (max-width: 1024px) {
             .expertise-grid,
-            .services-grid {
+            .services-grid,
+            .testimonials-grid {
                 grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .about-stats {
+                grid-template-columns: repeat(3, 1fr);
             }
         }
 
         @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: white;
+                flex-direction: column;
+                padding: calc(var(--spacing) * 2);
+                box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+                border-top: 1px solid rgba(0, 0, 0, 0.1);
+            }
+
+            .nav-menu.active {
+                display: flex;
+            }
+
+            .nav-toggle {
+                display: block;
+            }
+
             .expertise-grid,
             .services-grid,
-            .features-grid,
+            .testimonials-grid,
             .contact-container {
                 grid-template-columns: 1fr;
             }
 
-            .feature-item:nth-child(even) {
-                transform: translateY(0);
+            .about-stats {
+                grid-template-columns: 1fr;
+            }
+
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .header-content h1 {
+                font-size: 2.5em;
+            }
+
+            .hero-tagline {
+                font-size: 1.3em;
+            }
+
+            .hero-subtitle {
+                font-size: 1.1em;
             }
 
             header {
@@ -303,10 +716,61 @@
             .services-section {
                 clip-path: polygon(0 2%, 100% 0, 100% 98%, 0 100%);
             }
+
+            .footer-content {
+                flex-direction: column;
+                text-align: center;
+            }
         }
     </style>
 </head>
 <body>
+    <nav class="nav-wrapper">
+        <div class="container">
+            <div class="nav-container">
+                <a href="/" class="nav-logo">Eternia Solutions</a>
+                <ul class="nav-menu" id="nav-menu">
+                    <li><a href="/" class="{% if page.url == '/' %}active{% endif %}">Home</a></li>
+                    <li><a href="/process" class="{% if page.url == '/process/' %}active{% endif %}">Process</a></li>
+                    <li><a href="/#case-studies">Case Studies</a></li>
+                    <li><a href="/#contact">Contact</a></li>
+                </ul>
+                <button class="nav-toggle" id="nav-toggle">☰</button>
+            </div>
+        </div>
+    </nav>
+
     {{ content }}
+
+    <script>
+        // Mobile navigation toggle
+        const navToggle = document.getElementById('nav-toggle');
+        const navMenu = document.getElementById('nav-menu');
+        
+        navToggle.addEventListener('click', () => {
+            navMenu.classList.toggle('active');
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                navMenu.classList.remove('active');
+            });
+        });
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 </html> 
