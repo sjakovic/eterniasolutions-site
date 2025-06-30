@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ page.title | default: site.title }}</title>
+    <meta name="description" content="{{ page.description | default: site.description }}">
+    
+    <!-- Link to our new SCSS file. Jekyll will process it into CSS. -->
+    <link rel="stylesheet" href="{{ '/assets/css/styles.css' | relative_url }}">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <header class="header">
+        <div class="container">
+            <nav class="navbar">
+                <div class="logo">Eternia Solutions</div>
+                <ul class="nav-links">
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#about">About Me</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- This is where the content from index.md will be inserted -->
+        {{ content }}
+    </main>
+
+    <footer id="contact" class="footer">
+        <div class="container">
+            <h2 class="footer-title">Ready to solve your next technical challenge?</h2>
+            <p class="footer-subtitle">Let's discuss how my expertise can help your business grow.</p>
+            <a href="mailto:office@eterniasolutions.io?subject=Discovery Call Inquiry" class="cta-button">office@eterniasolutions.io</a>
+            <div class="footer-links">
+                <a href="{{ site.social.linkedin }}" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            </div>
+            <div class="footer-legal">
+                © {{ site.time | date: '%Y' }} Eternia Solutions | Registered in USA. All Rights Reserved.
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

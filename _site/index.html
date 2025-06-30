@@ -3,1043 +3,116 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Eternia Solutions LLC - Innovative Solutions for Tomorrow's Challenges">
-    <title>Eternia Solutions LLC</title>
+    <title>Eternia Solutions | Senior Backend Consultant - PHP & Node.js</title>
+    <meta name="description" content="Senior Backend Consultant with 15+ years of experience in PHP & Node.js, specializing in scalable enterprise systems, API development, and legacy system modernization for US & European clients.">
+    
+    <!-- Link to our new SCSS file. Jekyll will process it into CSS. -->
+    <link rel="stylesheet" href="/assets/css/styles.css">
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --primary: #2a5298;
-            --primary-dark: #1e3c72;
-            --text: #2d3436;
-            --text-light: #636e72;
-            --background: #ffffff;
-            --background-alt: #f8f9fa;
-            --spacing: 8px;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            line-height: 1.6;
-            color: var(--text);
-            background: var(--background);
-        }
-
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 calc(var(--spacing) * 2.5);
-        }
-
-        /* Navigation */
-        .nav-wrapper {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 1000;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
-        }
-
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: calc(var(--spacing) * 2) 0;
-        }
-
-        .nav-logo {
-            font-size: 1.5em;
-            font-weight: 800;
-            color: var(--primary-dark);
-            text-decoration: none;
-        }
-
-        .nav-menu {
-            display: flex;
-            list-style: none;
-            gap: calc(var(--spacing) * 4);
-        }
-
-        .nav-menu a {
-            color: var(--text);
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s ease;
-            padding: calc(var(--spacing) * 1) calc(var(--spacing) * 2);
-            border-radius: 6px;
-        }
-
-        .nav-menu a:hover {
-            color: var(--primary);
-            background: rgba(42, 82, 152, 0.1);
-        }
-
-        .nav-menu a.active {
-            color: var(--primary);
-            background: rgba(42, 82, 152, 0.1);
-        }
-
-        .nav-toggle {
-            display: none;
-            background: none;
-            border: none;
-            font-size: 1.5em;
-            color: var(--primary-dark);
-            cursor: pointer;
-        }
-
-        /* Adjust header for fixed nav */
-        header {
-            margin-top: 80px;
-            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
-            color: white;
-            padding: calc(var(--spacing) * 20) 0 calc(var(--spacing) * 25);
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-            clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
-        }
-
-        .header-content {
-            position: relative;
-            z-index: 2;
-        }
-
-        .header-content::after {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -50%;
-            width: 600px;
-            height: 600px;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
-            z-index: -1;
-        }
-
-        .header-content h1 {
-            font-size: 3.5em;
-            margin-bottom: calc(var(--spacing) * 3);
-            font-weight: 800;
-            letter-spacing: -1px;
-        }
-
-        .hero-tagline {
-            font-size: 1.6em;
-            opacity: 0.95;
-            max-width: 700px;
-            margin: 0 auto calc(var(--spacing) * 3);
-            font-weight: 600;
-        }
-
-        .hero-subtitle {
-            font-size: 1.2em;
-            opacity: 0.85;
-            max-width: 800px;
-            margin: 0 auto calc(var(--spacing) * 6);
-            line-height: 1.7;
-        }
-
-        .cta-buttons {
-            display: flex;
-            gap: calc(var(--spacing) * 3);
-            justify-content: center;
-            flex-wrap: wrap;
-        }
-
-        .cta-primary, .cta-secondary {
-            display: inline-block;
-            padding: calc(var(--spacing) * 2) calc(var(--spacing) * 4);
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 1.1em;
-            transition: all 0.3s ease;
-            border: 2px solid transparent;
-        }
-
-        .cta-primary {
-            background: white;
-            color: var(--primary);
-        }
-
-        .cta-primary:hover {
-            background: var(--background-alt);
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-        }
-
-        .cta-secondary {
-            background: transparent;
-            color: white;
-            border-color: white;
-        }
-
-        .cta-secondary:hover {
-            background: white;
-            color: var(--primary);
-            transform: translateY(-2px);
-        }
-
-        .main-content {
-            padding: calc(var(--spacing) * 10) 0;
-        }
-
-        .section {
-            margin-bottom: calc(var(--spacing) * 8);
-        }
-
-        .section h2 {
-            color: var(--primary-dark);
-            margin-bottom: calc(var(--spacing) * 3);
-            font-size: 2.2em;
-            font-weight: 700;
-            position: relative;
-        }
-
-        .section h2::after {
-            content: '';
-            display: block;
-            width: 60px;
-            height: 4px;
-            background: var(--primary);
-            margin-top: calc(var(--spacing) * 1.5);
-            border-radius: 2px;
-        }
-
-        .section p {
-            color: var(--text-light);
-            font-size: 1.1em;
-            max-width: 800px;
-        }
-
-        .contact-info {
-            background: var(--background-alt);
-            padding: calc(var(--spacing) * 8) 0;
-            position: relative;
-        }
-
-        .contact-info h2 {
-            color: var(--primary-dark);
-            margin-bottom: calc(var(--spacing) * 4);
-            font-size: 2em;
-        }
-
-        .contact-info p {
-            margin-bottom: calc(var(--spacing) * 2);
-            color: var(--text-light);
-            font-size: 1.1em;
-        }
-
-        .contact-info a {
-            color: var(--primary);
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-
-        .contact-info a:hover {
-            color: var(--primary-dark);
-            text-decoration: underline;
-        }
-
-        footer {
-            background: var(--primary-dark);
-            color: white;
-            text-align: center;
-            padding: calc(var(--spacing) * 3) 0;
-            font-size: 0.9em;
-        }
-
-        .footer-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: calc(var(--spacing) * 2);
-        }
-
-        .footer-links {
-            display: flex;
-            gap: calc(var(--spacing) * 3);
-        }
-
-        .footer-links a {
-            color: white;
-            text-decoration: none;
-            opacity: 0.8;
-            transition: opacity 0.3s ease;
-        }
-
-        .footer-links a:hover {
-            opacity: 1;
-        }
-
-        .expertise-section {
-            margin-top: -100px;
-            position: relative;
-            z-index: 2;
-        }
-
-        .expertise-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: calc(var(--spacing) * 3);
-        }
-
-        .expertise-item {
-            background: white;
-            padding: calc(var(--spacing) * 4);
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
-        }
-
-        .expertise-item:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
-        }
-
-        .expertise-item h3 {
-            color: var(--primary-dark);
-            margin-bottom: calc(var(--spacing) * 2);
-            font-size: 1.3em;
-            font-weight: 700;
-        }
-
-        .expertise-item p {
-            margin-bottom: calc(var(--spacing) * 2);
-            color: var(--text-light);
-            font-size: 1em;
-        }
-
-        .expertise-item ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        .expertise-item li {
-            padding: calc(var(--spacing) * 0.5) 0;
-            color: var(--text-light);
-            position: relative;
-            padding-left: calc(var(--spacing) * 2);
-        }
-
-        .expertise-item li::before {
-            content: '✓';
-            position: absolute;
-            left: 0;
-            color: var(--primary);
-            font-weight: bold;
-        }
-
-        .services-section {
-            padding: calc(var(--spacing) * 12) 0;
-            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
-            clip-path: polygon(0 5%, 100% 0, 100% 95%, 0 100%);
-            margin: calc(var(--spacing) * 10) 0;
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: calc(var(--spacing) * 4);
-        }
-
-        .service-item {
-            background: white;
-            padding: calc(var(--spacing) * 4);
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .service-item::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 5px;
-            height: 100%;
-            background: var(--primary);
-            border-radius: 5px 0 0 5px;
-        }
-
-        .service-item h3 {
-            color: var(--primary-dark);
-            margin-bottom: calc(var(--spacing) * 2);
-            font-size: 1.3em;
-            font-weight: 700;
-        }
-
-        .service-item p {
-            margin-bottom: calc(var(--spacing) * 2);
-            color: var(--text-light);
-            font-size: 1em;
-        }
-
-        .service-item ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        .service-item li {
-            padding: calc(var(--spacing) * 0.5) 0;
-            color: var(--text-light);
-            position: relative;
-            padding-left: calc(var(--spacing) * 2);
-        }
-
-        .service-item li::before {
-            content: '•';
-            position: absolute;
-            left: 0;
-            color: var(--primary);
-            font-weight: bold;
-        }
-
-        .about-section {
-            padding: calc(var(--spacing) * 12) 0;
-            background: var(--background-alt);
-        }
-
-        .about-container {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .about-content h2 {
-            text-align: center;
-            margin-bottom: calc(var(--spacing) * 6);
-        }
-
-        .about-intro {
-            font-size: 1.3em;
-            font-weight: 600;
-            color: var(--primary-dark);
-            margin-bottom: calc(var(--spacing) * 3);
-        }
-
-        .about-content p {
-            margin-bottom: calc(var(--spacing) * 3);
-            font-size: 1.1em;
-            line-height: 1.7;
-        }
-
-        .about-stats {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: calc(var(--spacing) * 4);
-            margin-top: calc(var(--spacing) * 6);
-            text-align: center;
-        }
-
-        .stat {
-            background: white;
-            padding: calc(var(--spacing) * 3);
-            border-radius: 10px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        .stat-number {
-            display: block;
-            font-size: 2.5em;
-            font-weight: 800;
-            color: var(--primary);
-            margin-bottom: calc(var(--spacing) * 1);
-        }
-
-        .stat-label {
-            color: var(--text-light);
-            font-size: 0.9em;
-            font-weight: 600;
-        }
-
-        .case-studies-section {
-            padding: calc(var(--spacing) * 12) 0;
-        }
-
-        .case-studies-grid {
-            display: grid;
-            gap: calc(var(--spacing) * 6);
-        }
-
-        .case-study {
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
-        }
-
-        .case-study h3 {
-            background: var(--primary);
-            color: white;
-            padding: calc(var(--spacing) * 3) calc(var(--spacing) * 4);
-            margin: 0;
-            font-size: 1.4em;
-            font-weight: 700;
-        }
-
-        .case-study-content {
-            padding: calc(var(--spacing) * 4);
-        }
-
-        .case-study-section {
-            margin-bottom: calc(var(--spacing) * 4);
-        }
-
-        .case-study-section:last-child {
-            margin-bottom: 0;
-        }
-
-        .case-study-section h4 {
-            color: var(--primary-dark);
-            margin-bottom: calc(var(--spacing) * 1.5);
-            font-size: 1.2em;
-            font-weight: 700;
-        }
-
-        .case-study-section p {
-            margin-bottom: calc(var(--spacing) * 1.5);
-            color: var(--text-light);
-        }
-
-        .case-study-section ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        .case-study-section li {
-            padding: calc(var(--spacing) * 0.5) 0;
-            color: var(--text-light);
-            position: relative;
-            padding-left: calc(var(--spacing) * 2);
-        }
-
-        .case-study-section li::before {
-            content: '✓';
-            position: absolute;
-            left: 0;
-            color: var(--primary);
-            font-weight: bold;
-        }
-
-        .testimonials-section {
-            padding: calc(var(--spacing) * 12) 0;
-            background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
-        }
-
-        .testimonials-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: calc(var(--spacing) * 4);
-        }
-
-        .testimonial {
-            background: white;
-            padding: calc(var(--spacing) * 4);
-            border-radius: 15px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
-        }
-
-        .testimonial blockquote {
-            font-style: italic;
-            font-size: 1.1em;
-            color: var(--text);
-            margin-bottom: calc(var(--spacing) * 3);
-            line-height: 1.6;
-        }
-
-        .testimonial-author {
-            border-top: 1px solid var(--background-alt);
-            padding-top: calc(var(--spacing) * 2);
-        }
-
-        .testimonial-author strong {
-            display: block;
-            color: var(--primary-dark);
-            font-weight: 700;
-        }
-
-        .testimonial-author span {
-            color: var(--text-light);
-            font-size: 0.9em;
-        }
-
-        .contact-section {
-            background: var(--background-alt);
-            padding: calc(var(--spacing) * 12) 0;
-            clip-path: polygon(0 0, 100% 10%, 100% 100%, 0 100%);
-            margin-top: calc(var(--spacing) * 10);
-        }
-
-        .contact-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: calc(var(--spacing) * 6);
-            align-items: center;
-        }
-
-        .contact-cta {
-            margin-top: calc(var(--spacing) * 4);
-        }
-
-        .contact-details {
-            background: white;
-            padding: calc(var(--spacing) * 4);
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        }
-
-        .contact-details h3 {
-            color: var(--primary-dark);
-            margin-bottom: calc(var(--spacing) * 2);
-            font-size: 1.3em;
-            font-weight: 700;
-        }
-
-        .contact-details p {
-            margin-bottom: calc(var(--spacing) * 1);
-            color: var(--text-light);
-        }
-
-        .contact-details a {
-            color: var(--primary);
-            text-decoration: none;
-            transition: color 0.3s ease;
-        }
-
-        .contact-details a:hover {
-            color: var(--primary-dark);
-        }
-
-        .section-title {
-            font-size: 2.5em;
-            color: var(--primary-dark);
-            margin-bottom: calc(var(--spacing) * 6);
-            position: relative;
-            display: inline-block;
-        }
-
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 0;
-            width: 60%;
-            height: 4px;
-            background: var(--primary);
-            border-radius: 2px;
-        }
-
-        @media (max-width: 1024px) {
-            .expertise-grid,
-            .services-grid,
-            .testimonials-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-            
-            .about-stats {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
-
-        @media (max-width: 768px) {
-            .nav-menu {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                right: 0;
-                background: white;
-                flex-direction: column;
-                padding: calc(var(--spacing) * 2);
-                box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-                border-top: 1px solid rgba(0, 0, 0, 0.1);
-            }
-
-            .nav-menu.active {
-                display: flex;
-            }
-
-            .nav-toggle {
-                display: block;
-            }
-
-            .expertise-grid,
-            .services-grid,
-            .testimonials-grid,
-            .contact-container {
-                grid-template-columns: 1fr;
-            }
-
-            .about-stats {
-                grid-template-columns: 1fr;
-            }
-
-            .cta-buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .header-content h1 {
-                font-size: 2.5em;
-            }
-
-            .hero-tagline {
-                font-size: 1.3em;
-            }
-
-            .hero-subtitle {
-                font-size: 1.1em;
-            }
-
-            header {
-                clip-path: polygon(0 0, 100% 0, 100% 95%, 0 100%);
-            }
-
-            .services-section {
-                clip-path: polygon(0 2%, 100% 0, 100% 98%, 0 100%);
-            }
-
-            .footer-content {
-                flex-direction: column;
-                text-align: center;
-            }
-        }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <nav class="nav-wrapper">
+
+    <header class="header">
         <div class="container">
-            <div class="nav-container">
-                <a href="/" class="nav-logo">Eternia Solutions</a>
-                <ul class="nav-menu" id="nav-menu">
-                    <li><a href="/" class="active">Home</a></li>
-                    <li><a href="/process" class="">Process</a></li>
-                    <li><a href="/#case-studies">Case Studies</a></li>
-                    <li><a href="/#contact">Contact</a></li>
+            <nav class="navbar">
+                <div class="logo">Eternia Solutions</div>
+                <ul class="nav-links">
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#about">About Me</a></li>
+                    <li><a href="#contact">Contact</a></li>
                 </ul>
-                <button class="nav-toggle" id="nav-toggle">☰</button>
-            </div>
+            </nav>
         </div>
-    </nav>
+    </header>
 
-    <header>
+    <main>
+        <!-- This is where the content from index.md will be inserted -->
+        <section class="hero">
+    <div class="container hero-container">
+        <div class="hero-text">
+            <h1 class="hero-title">Senior Backend Consultant for Enterprise Systems</h1>
+            <p class="hero-subtitle">I build, scale, and modernize complex PHP and Node.js applications, turning your biggest technical challenges into reliable, high-performance assets.</p>
+            <a href="mailto:office@eterniasolutions.io?subject=Discovery Call Inquiry" class="cta-button">Book a Free Discovery Call</a>
+        </div>
+        <div class="hero-image-container">
+            <img src="/assets/img/profile-img.jpg" alt="Simo Jakovic" class="profile-image" />
+        </div>
+    </div>
+</section>
+
+<section id="services" class="services">
     <div class="container">
-        <div class="header-content">
-            <h1>Senior PHP &amp; Node.js Consultant</h1>
-            <p class="hero-tagline">Building Scalable &amp; Secure Backend Systems for High-Growth Companies</p>
-            <p class="hero-subtitle">Leveraging 15+ years of experience to solve your most challenging performance, scalability, and legacy system modernization problems.</p>
-            <div class="cta-buttons">
-                <a href="#contact" class="cta-primary">Book a Free Discovery Call</a>
-                <a href="#case-studies" class="cta-secondary">View Case Studies</a>
+        <h2 class="section-title">How I Solve Your Problems</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <h3>Backend API Development</h3>
+                <p>I design and build robust, secure, and well-documented RESTful or GraphQL APIs that power your web and mobile applications, ensuring seamless data flow and integration.</p>
+            </div>
+            <div class="service-card">
+                <h3>Legacy System Modernization</h3>
+                <p>Trapped by old code? I meticulously audit, refactor, and migrate legacy PHP systems to modern frameworks, reducing technical debt and unlocking new growth opportunities.</p>
+            </div>
+            <div class="service-card">
+                <h3>Performance &amp; Scalability Audits</h3>
+                <p>If your application is slow or failing under load, I identify and eliminate bottlenecks in your code, database, and infrastructure to ensure it can handle enterprise-scale traffic.</p>
+            </div>
+            <div class="service-card">
+                <h3>Cloud Architecture &amp; DevOps</h3>
+                <p>I help you leverage the power of the cloud (AWS, GCP) by designing efficient, cost-effective infrastructure and implementing CI/CD pipelines for faster, more reliable deployments.</p>
             </div>
         </div>
     </div>
-</header>
+</section>
 
-<main>
-    <section class="expertise-section">
-        <div class="container">
-            <h2 class="section-title">Why Choose Me</h2>
-            <div class="expertise-grid">
-                <div class="expertise-item">
-                    <h3>15+ Years of Enterprise Experience</h3>
-                    <p>Deep expertise in FinTech, SaaS, E-commerce, and Logistics domains. I've scaled systems handling millions of users and transactions.</p>
-                    <ul>
-                        <li>FinTech payment processing systems</li>
-                        <li>SaaS platform backends</li>
-                        <li>E-commerce order management</li>
-                        <li>Logistics tracking APIs</li>
-                    </ul>
-                </div>
-                <div class="expertise-item">
-                    <h3>Specialized in Modern Backend Tech</h3>
-                    <p>Core stack: PHP (Laravel, Symfony) &amp; Node.js (Express, NestJS). Expert in databases, cloud platforms, and architectural patterns.</p>
-                    <ul>
-                        <li>PHP 8.x, Laravel, Symfony</li>
-                        <li>Node.js, Express, NestJS</li>
-                        <li>AWS, GCP, Docker, Kubernetes</li>
-                        <li>Microservices &amp; API Design</li>
-                    </ul>
-                </div>
-                <div class="expertise-item">
-                    <h3>Direct-to-Expert Collaboration</h3>
-                    <p>Work directly with me, a senior engineer, from start to finish. No project managers, no junior developers, just clear communication and expert execution.</p>
-                    <ul>
-                        <li>Direct technical leadership</li>
-                        <li>Hands-on development</li>
-                        <li>Clear communication</li>
-                        <li>End-to-end ownership</li>
-                    </ul>
-                </div>
-            </div>
+<section id="about" class="about">
+    <div class="container about-container">
+        <div class="about-text">
+            <h2 class="section-title">Direct Expertise, No Overheads</h2>
+            <p>Hi, I'm Simo. For over 15 years, I've been in the trenches with enterprise-level applications for leaders in FinTech, E-commerce, and SaaS. I founded Eternia Solutions to offer a different kind of partnership.</p>
+            <p>When you work with me, you're not paying for a sales team or project managers. You're getting a dedicated senior partner who is directly invested in your success. My focus is on pragmatic, robust engineering that delivers tangible business value—from enhancing performance to reducing operational costs.</p>
+            <p>Let's build something great together.</p>
         </div>
-    </section>
+    </div>
+</section>
 
-    <section class="services-section">
+<section id="why-me" class="why-me">
+     <div class="container">
+        <h2 class="section-title">Why Partner With Me?</h2>
+         <div class="why-me-grid">
+             <div class="why-me-card">
+                 <h4>Direct-to-Expert Collaboration</h4>
+                 <p>You work directly with me, the principal engineer. This means clear communication, rapid decision-making, and zero knowledge gaps. Your vision is never lost in translation.</p>
+             </div>
+             <div class="why-me-card">
+                 <h4>15+ Years of Proven Experience</h4>
+                 <p>I bring a decade and a half of hands-on experience solving complex backend problems at scale. You get battle-tested expertise, not theoretical solutions.</p>
+             </div>
+             <div class="why-me-card">
+                 <h4>Pragmatic &amp; Solution-Oriented</h4>
+                 <p>I focus on delivering reliable, maintainable code that solves your business problems efficiently. I prioritize practical results over chasing the latest tech trends.</p>
+             </div>
+         </div>
+    </div>
+</section>
+
+    </main>
+
+    <footer id="contact" class="footer">
         <div class="container">
-            <h2 class="section-title">Enterprise Solutions I Deliver</h2>
-            <div class="services-grid">
-                <div class="service-item">
-                    <h3>Backend API Development</h3>
-                    <p>Design, build, and maintain robust RESTful and GraphQL APIs for web and mobile applications. Focus on performance, security, and scalability from day one.</p>
-                    <ul>
-                        <li>RESTful API design &amp; implementation</li>
-                        <li>GraphQL schema design</li>
-                        <li>API documentation &amp; testing</li>
-                        <li>Performance optimization</li>
-                    </ul>
-                </div>
-                <div class="service-item">
-                    <h3>Legacy System Modernization</h3>
-                    <p>Auditing and refactoring older PHP applications to modern frameworks, improving performance, security, and maintainability without business disruption.</p>
-                    <ul>
-                        <li>Codebase analysis &amp; migration planning</li>
-                        <li>Gradual refactoring strategies</li>
-                        <li>Performance optimization</li>
-                        <li>Security hardening</li>
-                    </ul>
-                </div>
-                <div class="service-item">
-                    <h3>Performance &amp; Scalability Audits</h3>
-                    <p>Analyzing and optimizing existing Node.js or PHP applications to handle enterprise-level traffic. Identify bottlenecks and implement solutions.</p>
-                    <ul>
-                        <li>Performance profiling &amp; analysis</li>
-                        <li>Database optimization</li>
-                        <li>Caching strategies</li>
-                        <li>Load testing &amp; capacity planning</li>
-                    </ul>
-                </div>
-                <div class="service-item">
-                    <h3>Cloud Architecture &amp; DevOps</h3>
-                    <p>Designing and implementing CI/CD pipelines, containerization (Docker, Kubernetes), and deploying on AWS or GCP for maximum reliability.</p>
-                    <ul>
-                        <li>CI/CD pipeline design</li>
-                        <li>Docker containerization</li>
-                        <li>Kubernetes orchestration</li>
-                        <li>Cloud infrastructure design</li>
-                    </ul>
-                </div>
-                <div class="service-item">
-                    <h3>Third-Party API Integration</h3>
-                    <p>Complex integrations with payment gateways, CRMs, ERPs, and other enterprise systems. Ensuring reliability and error handling.</p>
-                    <ul>
-                        <li>Payment gateway integration</li>
-                        <li>CRM &amp; ERP system connections</li>
-                        <li>Webhook handling &amp; security</li>
-                        <li>Error handling &amp; retry logic</li>
-                    </ul>
-                </div>
-                <div class="service-item">
-                    <h3>System Architecture Design</h3>
-                    <p>Designing scalable, maintainable system architectures that grow with your business. Microservices, event-driven systems, and distributed computing.</p>
-                    <ul>
-                        <li>Microservices architecture</li>
-                        <li>Event-driven systems</li>
-                        <li>Distributed computing patterns</li>
-                        <li>Scalability planning</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="about-section">
-        <div class="container">
-            <div class="about-container">
-                <div class="about-content">
-                    <h2 class="section-title">About Me</h2>
-                    <p class="about-intro">Hi, I'm the founder and principal engineer at Eternia Solutions. For the past 15+ years, I've dedicated my career to solving complex backend challenges for enterprise clients.</p>
-                    <p>My passion lies in taking on the most challenging technical problems that keep CTOs and engineering managers up at night. Whether it's a legacy system that's become a bottleneck, a scaling crisis that's affecting user experience, or a complex integration that's holding back business growth - I thrive on these challenges.</p>
-                    <p>I've worked with companies ranging from fast-growing startups to established enterprises, always focusing on delivering solutions that not only solve the immediate problem but also set the foundation for future growth. My approach combines deep technical expertise with a business-focused mindset, ensuring that every solution I deliver drives real business value.</p>
-                    <div class="about-stats">
-                        <div class="stat">
-                            <span class="stat-number">15+</span>
-                            <span class="stat-label">Years Experience</span>
-                        </div>
-                        <div class="stat">
-                            <span class="stat-number">50+</span>
-                            <span class="stat-label">Projects Delivered</span>
-                        </div>
-                        <div class="stat">
-                            <span class="stat-number">100%</span>
-                            <span class="stat-label">Client Satisfaction</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="case-studies" class="case-studies-section">
-        <div class="container">
-            <h2 class="section-title">Case Studies</h2>
-            <div class="case-studies-grid">
-                <div class="case-study">
-                    <h3>European FinTech Platform</h3>
-                    <div class="case-study-content">
-                        <div class="case-study-section">
-                            <h4>The Challenge</h4>
-                            <p>Their legacy PHP monolith couldn't handle user growth, leading to frequent downtime and slow API responses. The system was processing €50M+ in transactions monthly but was becoming a bottleneck.</p>
-                        </div>
-                        <div class="case-study-section">
-                            <h4>My Solution</h4>
-                            <p>I was brought in to lead the backend refactoring. I designed a microservices architecture using Node.js and Docker, and migrated the core payment processing module without any downtime.</p>
-                        </div>
-                        <div class="case-study-section">
-                            <h4>Technology Stack</h4>
-                            <p>Node.js, Express, Docker, AWS Lambda, RDS, Redis, RabbitMQ</p>
-                        </div>
-                        <div class="case-study-section">
-                            <h4>The Results</h4>
-                            <ul>
-                                <li>Reduced API response time by 80%</li>
-                                <li>Increased system capacity to handle 10x traffic</li>
-                                <li>Lowered monthly server costs by 30%</li>
-                                <li>Zero downtime during migration</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="case-study">
-                    <h3>US-based B2B SaaS Company</h3>
-                    <div class="case-study-content">
-                        <div class="case-study-section">
-                            <h4>The Challenge</h4>
-                            <p>A growing SaaS platform was experiencing severe performance issues with their Laravel application. Database queries were taking 5+ seconds, and users were abandoning the platform.</p>
-                        </div>
-                        <div class="case-study-section">
-                            <h4>My Solution</h4>
-                            <p>I conducted a comprehensive performance audit and implemented database optimization, caching strategies, and query optimization. I also refactored critical code paths for better performance.</p>
-                        </div>
-                        <div class="case-study-section">
-                            <h4>Technology Stack</h4>
-                            <p>PHP 8.1, Laravel, MySQL, Redis, AWS RDS, CloudFront</p>
-                        </div>
-                        <div class="case-study-section">
-                            <h4>The Results</h4>
-                            <ul>
-                                <li>Reduced average page load time from 5s to 0.8s</li>
-                                <li>Improved database query performance by 90%</li>
-                                <li>Increased user retention by 40%</li>
-                                <li>Reduced AWS costs by 25%</li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="testimonials-section">
-        <div class="container">
-            <h2 class="section-title">What Clients Say</h2>
-            <div class="testimonials-grid">
-                <div class="testimonial">
-                    <blockquote>
-                        "Working with Eternia Solutions was a game-changer for our platform. The performance improvements we saw were incredible, and the migration was seamless. Highly recommend for any complex backend challenges."
-                    </blockquote>
-                    <div class="testimonial-author">
-                        <strong>John Doe</strong>
-                        <span>CTO, PreviousCompany</span>
-                    </div>
-                </div>
-                <div class="testimonial">
-                    <blockquote>
-                        "The level of expertise and direct communication was exactly what we needed. Our legacy system modernization project was completed on time and under budget, with zero business disruption."
-                    </blockquote>
-                    <div class="testimonial-author">
-                        <strong>Jane Smith</strong>
-                        <span>VP Engineering, TechCorp</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="contact" class="contact-section">
-        <div class="container">
-            <div class="contact-container">
-                <div>
-                    <h2 class="section-title">Ready to Transform Your Backend?</h2>
-                    <p>Let's discuss how I can help solve your most challenging technical problems. Book a free discovery call to explore your project requirements and see if we're a good fit.</p>
-                    <div class="contact-cta">
-                        <a href="mailto:office@eterniasolutions.io" class="cta-primary">Book a Free Discovery Call</a>
-                    </div>
-                </div>
-                <div class="contact-details">
-                    <h3>Eternia Solutions LLC</h3>
-                    <p>Registered in the United States</p>
-                    <p>Registered Agents Inc</p>
-                    <p>30 N Gould St Ste R</p>
-                    <p>Sheridan, WY 82801</p>
-                    <p><strong>Email:</strong> <a href="mailto:office@eterniasolutions.io">office@eterniasolutions.io</a></p>
-                    <p><strong>Website:</strong> <a href="https://eterniasolutions.io">eterniasolutions.io</a></p>
-                </div>
-            </div>
-        </div>
-    </section>
-</main>
-
-<footer>
-    <div class="container">
-        <div class="footer-content">
-            <p>&copy; 2025 Eternia Solutions LLC. All rights reserved.</p>
+            <h2 class="footer-title">Ready to solve your next technical challenge?</h2>
+            <p class="footer-subtitle">Let's discuss how my expertise can help your business grow.</p>
+            <a href="mailto:office@eterniasolutions.io?subject=Discovery Call Inquiry" class="cta-button">office@eterniasolutions.io</a>
             <div class="footer-links">
-                <a href="/privacy">Privacy Policy</a>
-                <a href="/terms">Terms of Service</a>
+                <a href="https://www.linkedin.com/company/eternia-solutions" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+            </div>
+            <div class="footer-legal">
+                © 2025 Eternia Solutions | Registered in USA. All Rights Reserved.
             </div>
         </div>
-    </div>
-</footer>
+    </footer>
 
-
-    <script>
-        // Mobile navigation toggle
-        const navToggle = document.getElementById('nav-toggle');
-        const navMenu = document.getElementById('nav-menu');
-        
-        navToggle.addEventListener('click', () => {
-            navMenu.classList.toggle('active');
-        });
-
-        // Close mobile menu when clicking on a link
-        document.querySelectorAll('.nav-menu a').forEach(link => {
-            link.addEventListener('click', () => {
-                navMenu.classList.remove('active');
-            });
-        });
-
-        // Smooth scrolling for anchor links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
-            });
-        });
-    </script>
 </body>
-</html> 
+</html>

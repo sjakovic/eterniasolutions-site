@@ -9,6 +9,9 @@ author: "Eternia Solutions LLC"
 keywords: "PHP consultant, Node.js consultant, backend development, API development, legacy system modernization, performance optimization, cloud architecture, DevOps"
 
 # Social media
+social:
+  linkedin: "https://www.linkedin.com/company/eternia-solutions"
+
 twitter:
   username: eterniasolutions
   card: summary_large_image
