@@ -11,7 +11,7 @@ description: Learn about Simo Jakovic, founder and lead architect at Eternia Sol
                 <img src="{{ '/assets/img/founder.jpg' | relative_url }}" alt="Simo Jakovic - Founder & CEO" class="founder-image">
             </div>
             <span class="section-badge">Leadership</span>
-            <h1>Meet Simo Jakovic</h1>
+            <h1>Meet Simo Jaković</h1>
             <p class="founder-title">Founder & Chief Architect</p>
             <p class="founder-subtitle">Building enterprise-grade software systems for over 15 years</p>
         </div>
